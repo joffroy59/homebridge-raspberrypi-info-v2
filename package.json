@@ -1,7 +1,7 @@
 {
   "name": "homebridge-raspberrypi-info-v2",
-  "version": "0.0.4",
-  "description": "a homebridge(https://github.com/nfarina/homebridge) plugin that get RaspberryPi information (Homebridge V2).",
+  "version": "0.0.5",
+  "description": "a homebridge(https://github.com/nfarina/homebridge) plugin that get RaspberryPi information.",
   "keywords": [
     "homebridge-plugin",
     "raspberrypi",
@@ -22,7 +22,7 @@
     "homebridge": ">=2.0.2"
   },
   "dependencies": {
-    "fakegato-history": "^0.5.3",
+    "fakegato-history": "^0.6.4",
     "request": "^2.65.0"
   }
 }

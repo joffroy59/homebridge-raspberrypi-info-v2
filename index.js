@@ -24,7 +24,7 @@ function readUptime() {
 	var script = exec('uptime > /tmp/uptime.txt',
 		(error, stdout, stderr) => {
 			if (error !== null) {
-				//this.log("exec error: " + ${error});
+				 console.log("exec error: ${error}" + error);
 			}
 		});			
 };
@@ -77,6 +77,7 @@ RaspberryPiInfo.prototype.getUptime = function (callback) {
 	var data = fs.readFileSync("/tmp/uptime.txt", "utf-8");
 	var uptime = data.substring(12, data.indexOf(",", data.indexOf(",", 0)+1));
 		
+	this.log("exec getUptime: " + uptime);	
 	callback(null, uptime);
 };
 
@@ -85,6 +86,7 @@ RaspberryPiInfo.prototype.getAvgLoad = function (callback) {
 	var data = fs.readFileSync("/tmp/uptime.txt", "utf-8");
 	var load = data.substring(data.length - 17);
 		
+	this.log("exec getAvgLoad: " + load);
 	callback(null, load);
 };
 
@@ -92,6 +94,8 @@ RaspberryPiInfo.prototype.setUpServices = function () {
 
 	var that = this;
 	var temp;
+
+	this.displayName="RaspberryPi" + "-" + hostname
 	
 	this.infoService = new Service.AccessoryInformation();
 	this.infoService
@@ -100,7 +104,7 @@ RaspberryPiInfo.prototype.setUpServices = function () {
 		.setCharacteristic(Characteristic.SerialNumber, hostname + "-" + this.name)
 		.setCharacteristic(Characteristic.FirmwareRevision, packageFile.version);
 	
-	this.fakeGatoHistoryService = new FakeGatoHistoryService("weather", this, { storage: 'fs' });
+	this.fakeGatoHistoryService = new FakeGatoHistoryService("weather", this, { storage: 'fs', minutes: 1 });
 	
 	let uuid1 = UUIDGen.generate(that.name + '-Uptime');
 	info = function (displayName, subtype) {
