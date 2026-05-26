@@ -3,6 +3,11 @@
 based on YinHang's RaspberryPI temperature plugin and simont77's FakeGatoHistory plugin for homebridge
 with more info
 
+## Requirements
+
+- homebridge >= 2.0.2
+- node >= 22.0.0
+
 <img src=https://raw.githubusercontent.com/thncode/homebridge-raspberrypi-info/master/screenshot.png />
 
 ## Configuration
